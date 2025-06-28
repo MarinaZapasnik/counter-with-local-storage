@@ -43,7 +43,7 @@ export const Counter = () => {
     const  MIN_STEP_VALUE:number = 1 
 
     const initialMessage = (minValue: number, maxValue: number, count: number | null, step: number) => {
-        if (count) {
+        if (count !== null) {
             return null
         }  
 
@@ -84,13 +84,16 @@ export const Counter = () => {
         };
 
     const isRedCount = (minValue: number, maxValue: number, stepValue: number, count: number | null): boolean => {
-        return count !== null && (count >= Math.floor((maxValue - minValue) / stepValue) * stepValue || count === maxValue)
+        
+        return stepValue === 1  ?
+                    count === maxValue :
+                    count !== null && count >= Math.floor((maxValue - minValue) / stepValue) * stepValue
     }
 
 
 
     const getValuesHandler = (event: ChangeEvent<HTMLInputElement>, value: 'minValue' | 'maxValue' | 'stepValue') => {
-        setMessage("enter values and press 'set'")
+        setMessage("enter values and press 'set'" )
         setCount(null)
         setCountToLocalStorage(null)
         const newValue = Number(event.target.value)
@@ -99,7 +102,7 @@ export const Counter = () => {
 
         const isIncorrect = isIncorrectValues(newValues.minValue, newValues.maxValue, newValues.stepValue);
 
-            setMessage(isIncorrect ? 'incorrect value!' : 'enter values and press \'set\'')
+            setMessage(isIncorrect ? 'incorrect value!' : count !== null ? null : "enter values and press 'set'" )
             setSetDisabled(isIncorrect ? true : false)
             
                 
@@ -122,15 +125,12 @@ export const Counter = () => {
         
         if (typeof(count) === 'number') {
             const newCount = count + values.stepValue
-            setCount(newCount)
-            setCountToLocalStorage(newCount)
+            setCount(newCount)            
 
             const isFinish = isRedCount(values.minValue, values.maxValue, values.stepValue, newCount)
             isFinish && setIncDisabled(true)
-            
-            if (count >= values.maxValue - 1) {
-                    setIncDisabled(true)
-            }
+
+            setCountToLocalStorage(newCount)
         }
     }
 
@@ -146,7 +146,9 @@ export const Counter = () => {
         setResetDisabled(true)
         setCount(null)
         const isIncorrect = isIncorrectValues(values.minValue, values.maxValue, values.stepValue);
-        setMessage(isIncorrect ? 'incorrect value!' : "enter values and press 'set'")
+        setMessage(isIncorrect ? 'incorrect value!' : "enter values and press 'set'" )
+
+        
     }
     
 
