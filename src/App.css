@@ -57,15 +57,23 @@ body {
     
 }
 
+.inputElement {
+    display: 'flex';
+    gap: '20px';
+    width: '100%';
+    justify-content: 'space-around'
+}
+
 .buttonFrame {
     border: 3px solid rgb(113 148 190);
     border-radius: 10px;
     width: 340px;
     max-width: 340px;
-    height: 80px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
     gap: 20px;
     background-color: rgb(255 255 255);
 }

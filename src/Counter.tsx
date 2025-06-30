@@ -39,7 +39,7 @@ export const Counter = () => {
 
     
     const  MIN_LIMIT_VALUE:number = 0 
-    const  MAX_LIMIT_VALUE:number = 100 
+    const  MAX_LIMIT_VALUE:number = 500 
     const  MIN_STEP_VALUE:number = 1 
 
     const initialMessage = (minValue: number, maxValue: number, count: number | null, step: number) => {
@@ -134,6 +134,8 @@ export const Counter = () => {
         }
     }
 
+   
+
     const resetHandler = () => {
         setIncDisabled(false)
         setCount(values.minValue)
@@ -157,9 +159,9 @@ export const Counter = () => {
 
             <div className="container">
 
-                <div className="block" style={{gap: '15px'}}>
+                <div className="block" style={{gap: '15px', padding: '18px'}}>
 
-                    <div style={{display: 'flex', gap: '20px'}}>
+                    <div style={{display: 'flex', gap: '20px', width: '100%', justifyContent: 'space-between'}}>
                         <label className="label">max value:</label>
                         <input 
                             value={values.maxValue}
@@ -174,7 +176,7 @@ export const Counter = () => {
                             onChange={(event: ChangeEvent<HTMLInputElement>) => getValuesHandler(event, 'maxValue')}
                         />    
                     </div>
-                    <div style={{display: 'flex', gap: '20px'}}>
+                    <div style={{display: 'flex', gap: '20px', width: '100%', justifyContent: 'space-between'}}>
                         <label className="label">start value:</label>
                         <input 
                             value={values.minValue}
@@ -189,7 +191,7 @@ export const Counter = () => {
                             onClick={setSettingsHandler}    
                         />    
                     </div>    
-                    <div style={{display: 'flex', gap: '20px'}}>
+                    <div style={{display: 'flex', gap: '20px', width: '100%', justifyContent: 'space-between'}}>
                         <label className="label">step:</label>
                         <input 
                             value={values.stepValue}
@@ -232,13 +234,17 @@ export const Counter = () => {
                     </h2>
                 </div>
 
-                <div className='buttonFrame'>
-                    <button 
-                        disabled={isIncDisabled}
-                        className="btn"
-                        onClick={incrementHahdler}>
-                            inc
-                    </button>
+                <div className='buttonFrame' >
+                    <div style={{display: 'flex', gap: '20px'}}>
+                        <button 
+                            disabled={isIncDisabled}
+                            className="btn"
+                            onClick={incrementHahdler}>
+                                inc
+                        </button>
+                       
+                    </div>
+                    
                     <button 
                         disabled={isResetDisabled}
                         className="btn"
