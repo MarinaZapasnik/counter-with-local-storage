@@ -87,7 +87,7 @@ export const Counter = () => {
         
         return stepValue === 1  ?
                     count === maxValue :
-                    count !== null && count >= Math.floor((maxValue - minValue) / stepValue) * stepValue
+                    count !== null && count > Math.floor((maxValue - minValue) / stepValue) * stepValue
     }
 
 
@@ -134,7 +134,6 @@ export const Counter = () => {
         }
     }
 
-   
 
     const resetHandler = () => {
         setIncDisabled(false)
